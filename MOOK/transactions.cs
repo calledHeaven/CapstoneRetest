@@ -11,9 +11,7 @@ namespace MOOK
         
         private char _Transaction_Type;
         private float _Transaction_Value;
-        public int ID { get; private set; }
-        private static int Next_ID;
-        public string transaction { get { return Transaction_Type.ToString() + "     " + Transaction_Value.ToString(); } }
+        public string transaction { get { return Transaction_Type.ToString() + "     " + Transaction_Value.ToString(); } } //tostring method in order to assist in outputing when called in the menu
     
         
 
@@ -45,12 +43,10 @@ namespace MOOK
             }
         }
 
-        public transactions(char transaction_Type, float transaction_Value)
+        public transactions(char transaction_Type, float transaction_Value)  // creation of a transaction, not requiring projectID, as transactions are stored in lists in projects, that already store Project ids, reducing dependancies and repetition
         {
             Transaction_Type = transaction_Type;
             Transaction_Value = transaction_Value;
-            ID = Next_ID;
-            Next_ID++;
         }
     }
 

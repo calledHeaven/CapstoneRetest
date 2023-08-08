@@ -37,7 +37,7 @@ namespace MOOK
         }
     }
 
-    class ShowExistingProjects : ConsoleMenu
+    class ShowExistingProjects : ConsoleMenu //creates list of existing projects, that can be viewed and selected to view transactions
     {
         ProjectsManager _manager;
 
@@ -67,7 +67,7 @@ namespace MOOK
         }
     }
 
-    class AddNewProjectMenu : MenuItem
+    class AddNewProjectMenu : MenuItem //allows for file reading that will create new projects as needed
     {
         ProjectsManager _manager;
 
@@ -109,7 +109,7 @@ namespace MOOK
         }
     }
 
-    class EditExistingProjectMenu : ConsoleMenu
+    class EditExistingProjectMenu : ConsoleMenu // allows for browsing of projects to check and eddit transactions
     {
         private ProjectsManager _manager;
 
@@ -139,7 +139,7 @@ namespace MOOK
         }
     }
 
-    class EditExistingProjectMenuItem : MenuItem
+    class EditExistingProjectMenuItem : MenuItem //allows for selection of projects to edit
     {
         private Projects Projects;
 
@@ -184,7 +184,7 @@ namespace MOOK
         }
     }
 
-    class RemoveExistingProjectMenuItem : MenuItem
+    class RemoveExistingProjectMenuItem : MenuItem // creates menu for project removal
     {
         private Projects Projects;
         private ProjectsManager _manager;
@@ -212,7 +212,7 @@ namespace MOOK
         }
     }
 
-    class RemoveExistingProjectMenu : ConsoleMenu
+    class RemoveExistingProjectMenu : ConsoleMenu // menu ofprojects to remove
     {
         private ProjectsManager _manager;
         public RemoveExistingProjectMenu(ProjectsManager manager)
@@ -248,7 +248,7 @@ namespace MOOK
     #region Transaction Menus and MenuItems
 
 
-    class DisplayProjectTransactions : MenuItem
+    class DisplayProjectTransactions : MenuItem //displays all transactions in a project
     {
         private Projects _projects;
 
@@ -273,7 +273,7 @@ namespace MOOK
         }
     }
 
-    class ViewProjectTransactions : ConsoleMenu
+    class ViewProjectTransactions : ConsoleMenu //displays transactions and allows for viewing of project information
     {
         private Projects Projects;
 
@@ -305,7 +305,7 @@ namespace MOOK
         }
     }
 
-    class ViewProjectSales : MenuItem
+    class ViewProjectSales : MenuItem // alows for project sales viewing
     {
         private Projects Projects;
 
@@ -325,7 +325,7 @@ namespace MOOK
             return " View Project Sales";
         }
     }
-    class ViewProjectPurchases : MenuItem
+    class ViewProjectPurchases : MenuItem // allows for project purchase viewing
     {
         private Projects Projects;
 
@@ -345,7 +345,7 @@ namespace MOOK
             return " View Project Purchases";
         }
     }
-    class ViewProjectVAT : MenuItem
+    class ViewProjectVAT : MenuItem // allows for VAT refund amount viewing if eligable projects
     {
         private Projects Projects;
 

@@ -28,7 +28,7 @@ namespace MOOK // projects is a middle class in transactions, projects, buissnes
             }
         }
 
-        public Projects(int project_ID, bool VAT_Available)
+        public Projects(int project_ID, bool VAT_Available) //  project constructor stores ID to reduce repetition and weather the VAT refund is available for project when created to remove an unessisary check laer in the program
         {
             Project_ID = project_ID;
             VAT_available = VAT_Available;

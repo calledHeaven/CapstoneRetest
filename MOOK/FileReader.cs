@@ -11,7 +11,7 @@ namespace MOOK
     public abstract class FileReader
     {
 
-        public static string GetFileName()
+        public static string GetFileName() // gets file name and returns as a string for other methods later use
         {
             string Filename;
             Console.WriteLine("Please enter the file directory of the file, e.g C:\\Users\\HomeUser\\Documents\\Visual Studio 2022\\coursework");
@@ -20,14 +20,14 @@ namespace MOOK
 
             while (Filename == null) 
             {
-                Console.WriteLine("error in netering file location, please try again");
+                Console.WriteLine("error in entering file location, please try again");
             }
 
             return Filename;
         }
         
 
-        public static void Read_Input_To_Transaction_Type1(ProjectsManager projectsManager, string FileName ) 
+        public static void Read_Input_To_Transaction_Type1(ProjectsManager projectsManager, string FileName ) // reads files of the first type (comma seperated files), and splits it into sections that can easily be input into the transactions constructor, and will automaticaly enter it into projects, or creates them if they do not already exist
         {
             bool Project_Exists = false;
             string lines;
@@ -73,7 +73,7 @@ namespace MOOK
             }
         }
 
-        public static void Read_Input_To_Transaction_Type2(ProjectsManager projectsManager, string FileName) // change to read second file type
+        public static void Read_Input_To_Transaction_Type2(ProjectsManager projectsManager, string FileName) // an adjustment of the first read to input method adjusted to read the second file type(full type files)
         {
             bool Project_Exists = false;
             string lines;
@@ -123,7 +123,7 @@ namespace MOOK
             }
         }
 
-        public static char Get_Transaction_Type(string Type_Unsorted) 
+        public static char Get_Transaction_Type(string Type_Unsorted) // gets Transaction types from type 2 files, and converts them to charicters that can be input into the transactions constructors
         {
             Type_Unsorted = Type_Unsorted.ToUpper();
             if (Type_Unsorted == "Land")
@@ -148,7 +148,7 @@ namespace MOOK
             }
         }
 
-        public static int Get_Input_Type(string FileName)
+        public static int Get_Input_Type(string FileName) // checks file type, whist adding in a third section to demonstrait erronius file type readings
         {
             string lines;
             StreamReader sr = new StreamReader(FileName);
@@ -165,14 +165,6 @@ namespace MOOK
             {
                 return 3;
             }
-        }
-       
-        public static void ChooseReadtype(int FileType, ProjectsManager projectsManager, string FileName)
-        {
-            if (FileType == 1)
-                Read_Input_To_Transaction_Type1(projectsManager, FileName);
-        }
-
-        
+        } 
     }
 }

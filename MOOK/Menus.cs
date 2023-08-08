@@ -8,7 +8,7 @@ namespace MOOK
 {
     public static class Menus
     {
-        public static int GetIntegerInRange(int pMin, int pMax, string pMessage)
+        public static int GetIntegerInRange(int pMin, int pMax, string pMessage) //gets numbers within range in order to be used to collect menu selections
         {
             if (pMin > pMax)
             {
@@ -49,9 +49,9 @@ namespace MOOK
 
         public bool IsActive { get; set; }
 
-        public abstract void CreateMenu();
+        public abstract void CreateMenu(); // abstract menus sections that reduce code by being rewritable to keep a standard template, also increasing readability
 
-        public override void Select()
+        public override void Select() //creates a menu and sets out a layout that allows for menu item selection
         {
             IsActive = true;
             do
@@ -63,7 +63,7 @@ namespace MOOK
             } while (IsActive);
         }
 
-        public override string ToString()
+        public override string ToString() // allows for easier reading and reducing coding later on
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(MenuText());
@@ -75,7 +75,7 @@ namespace MOOK
         }
     }
 
-    abstract class MenuItem // TODO Make Interface?
+    abstract class MenuItem 
     {
         public abstract string MenuText();
         public abstract void Select();
@@ -85,7 +85,7 @@ namespace MOOK
     {
         private ConsoleMenu _menu;
 
-        public ExitMenuItem(ConsoleMenu parentItem)
+        public ExitMenuItem(ConsoleMenu parentItem) // allows exiting of menus by creating a new menu of the parent item 
         {
             _menu = parentItem;
         }
