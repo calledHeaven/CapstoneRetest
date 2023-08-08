@@ -81,14 +81,13 @@ namespace MOOK
             while ((lines = sr.ReadLine()) != null)
             {
                 string[] splitstring = lines.Split("(");
-
                 char T_Type = Get_Transaction_Type(splitstring[0]);
 
                 splitstring = splitstring[1].Split(")");
                 int P_ID = Convert.ToInt32(splitstring[0]);
 
                 splitstring = lines.Split(" = ");
-                float T_Value = Convert.ToSingle(splitstring[1]);
+                float T_Value = float.Parse(splitstring[1] = splitstring[1].Remove(splitstring[1].Length -1));
 
                 Project_Exists = projectsManager.checkForProjects(P_ID);
 
@@ -126,19 +125,19 @@ namespace MOOK
         public static char Get_Transaction_Type(string Type_Unsorted) // gets Transaction types from type 2 files, and converts them to charicters that can be input into the transactions constructors
         {
             Type_Unsorted = Type_Unsorted.ToUpper();
-            if (Type_Unsorted == "Land")
+            if (Type_Unsorted == "LAND")
             {
                 return ('L');
             }
-            else if (Type_Unsorted == "Renovation")
+            else if (Type_Unsorted == "RENOVATION")
             {
                 return ('R');
             }
-            else if (Type_Unsorted == "Purchase")
+            else if (Type_Unsorted == "PURCHASE")
             {
                 return ('P');
             }
-            else if (Type_Unsorted == "Sale")
+            else if (Type_Unsorted == "SALE")
             {
                 return ('S');
             }
@@ -151,6 +150,17 @@ namespace MOOK
         public static int Get_Input_Type(string FileName) // checks file type, whist adding in a third section to demonstrait erronius file type readings
         {
             string lines;
+            try
+            {
+                StreamReader sr_Test = new StreamReader(FileName);
+            }
+            catch
+            (Exception e)
+            {
+                Console.WriteLine("Filename enter incorrectly, please try again");
+                
+            }
+
             StreamReader sr = new StreamReader(FileName);
             lines = sr.ReadLine();
             if (Char.IsDigit(lines[0]) == true) 
