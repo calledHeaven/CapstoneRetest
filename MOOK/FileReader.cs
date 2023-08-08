@@ -31,6 +31,14 @@ namespace MOOK
         {
             bool Project_Exists = false;
             string lines;
+            try
+            {
+                StreamReader sr_test = new StreamReader(FileName);
+            }
+            catch (Exception e) 
+            {
+                Console.WriteLine("errer in file name please try again");
+            }
             StreamReader sr = new StreamReader(FileName);
             while ((lines = sr.ReadLine()) != null)
             {
