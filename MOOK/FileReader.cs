@@ -14,13 +14,29 @@ namespace MOOK
         public static string GetFileName() // gets file name and returns as a string for other methods later use
         {
             string Filename;
-            Console.WriteLine("Please enter the file directory of the file, e.g C:\\Users\\HomeUser\\Documents\\Visual Studio 2022\\coursework");
-            Console.WriteLine("if this is a struggle, locate the files in the file explorer, right click and seslect 'Copy as text'");
-            Filename = Console.ReadLine();
-
-            while (Filename == null) 
+            try
             {
-                Console.WriteLine("error in entering file location, please try again");
+                
+                Console.WriteLine("Please enter the file directory of the file, e.g C:\\Users\\HomeUser\\Documents\\Visual Studio 2022\\coursework");
+                Console.WriteLine("if this is a struggle, locate the files in the file explorer, right click and seslect 'Copy as text'");
+                Filename = Console.ReadLine();
+
+                while (Filename == null)
+                {
+                    Console.WriteLine("error in entering file location, please try again");
+                }
+
+                StreamReader sr_test = new StreamReader(Filename);
+
+            }
+            catch
+            (Exception e)
+            {
+                Console.WriteLine("Filename enter incorrectly, please try again");
+                Console.WriteLine("Please enter the file directory of the file, e.g C:\\Users\\HomeUser\\Documents\\Visual Studio 2022\\coursework");
+                Console.WriteLine("if this is a struggle, locate the files in the file explorer, right click and seslect 'Copy as text'");
+                Filename = Console.ReadLine();
+                return Filename;
             }
 
             return Filename;

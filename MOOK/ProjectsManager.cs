@@ -291,6 +291,7 @@ namespace MOOK
             }
             Projects.Get_Total_Profit();
 
+            _menuItems.Add(new ViewProjectProfits(Projects));
             _menuItems.Add(new ViewProjectSales(Projects));
             _menuItems.Add(new ViewProjectPurchases(Projects));
             if (Projects.VAT_available == true) 
@@ -305,6 +306,26 @@ namespace MOOK
         }
     }
 
+    class ViewProjectProfits : MenuItem // allows for project profits viewing
+    {
+        private Projects Projects;
+
+        public ViewProjectProfits(Projects projects)
+        {
+            Projects = projects;
+        }
+        public override void Select()
+        {
+
+            Console.WriteLine("total sales for project " + Projects.Project_ID);
+            Console.WriteLine(Projects.Get_Total_Profit());
+
+        }
+        public override string MenuText()
+        {
+            return " View Project Profits";
+        }
+    }
     class ViewProjectSales : MenuItem // alows for project sales viewing
     {
         private Projects Projects;
