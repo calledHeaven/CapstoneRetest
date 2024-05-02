@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace MOOK // note: remember to add readlines to data viewing sections, so you actualy hav a chance to read the data
+namespace MOOK 
 {
     // based on the OO Menu system provided by Hull University
     #region Project Manager Menus and MenuItems
 
-    class ProjectManagerMenu : ConsoleMenu
+    class ProjectManagerMenu : ConsoleMenu // a base start menu, checks for projects and provides a base menu for editing projects
     {
         private ProjectsManager _manager;
 
@@ -40,7 +40,7 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         }
     }
 
-    class CreateNewProjects : ConsoleMenu //creates list of existing projects, that can be viewed and selected to view transactions
+    class CreateNewProjects : ConsoleMenu //creates new projects, giving options of newbuilds and renovations
     {
         ProjectsManager _manager;
 
@@ -193,15 +193,6 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
 
              Console.WriteLine("please enter transaction type:  \n enter in the format 'L' for land, 'P; for purchase, and so on");
              Type = Convert.ToChar((Console.ReadLine().ToUpper()));
-
-             /*
-             while (Type != 'L' || Type != 'R' || Type != 'P' || Type != 'S' )
-             {
-                 Console.WriteLine("invalid input, please try again");
-                 Console.WriteLine("please enter transaction type:  \n enter in the format 'L' for land, 'P; for purchase, and so on");
-                 Type = Convert.ToChar((Console.ReadLine().ToUpper()));
-             }
-             */
             Console.WriteLine("please enter transaction Value");
             value =  float.Parse(Console.ReadLine());
 
@@ -245,7 +236,7 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         }
     }
 
-    class RemoveExistingProjectMenu : ConsoleMenu // menu ofprojects to remove
+    class RemoveExistingProjectMenu : ConsoleMenu // menu of projects to remove
     {
         private ProjectsManager _manager;
         public RemoveExistingProjectMenu(ProjectsManager manager)
@@ -314,7 +305,7 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         }
     }
 
-    class CreateProjectNewbuild : MenuItem //displays all transactions in a project
+    class CreateProjectNewbuild : MenuItem // menu for creating newbuild projects
     {
         private ProjectsManager _manager;
 
@@ -356,7 +347,7 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         }
     }
 
-    class CreateProjectRenovation : MenuItem //displays all transactions in a project
+    class CreateProjectRenovation : MenuItem //menu for creating a renovation project
     {
         private ProjectsManager _manager;
 
