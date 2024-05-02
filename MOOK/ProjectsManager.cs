@@ -26,6 +26,7 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
             _menuItems.Add(new AddNewProjectMenu(_manager));
             if (_manager._projects.Count > 0)
             {
+                _menuItems.Add(new CreateNewProjects(_manager));
                 _menuItems.Add(new ShowExistingProjects(_manager));
                 _menuItems.Add(new EditExistingProjectMenu(_manager));
                 _menuItems.Add(new RemoveExistingProjectMenu(_manager));
@@ -36,6 +37,32 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         public override string MenuText()
         {
             return "Buisness Manager Menu";
+        }
+    }
+
+    class CreateNewProjects : ConsoleMenu //creates list of existing projects, that can be viewed and selected to view transactions
+    {
+        ProjectsManager _manager;
+
+        public CreateNewProjects(ProjectsManager manager)
+        {
+            _manager = manager;
+        }
+
+        public override void CreateMenu()
+        {
+            _menuItems.Clear();
+
+            _menuItems.Add(new CreateProjectRenovation(_manager));
+            _menuItems.Add(new CreateProjectNewbuild(_manager));
+
+            
+            _menuItems.Add(new ExitMenuItem(this));
+        }
+
+        public override string MenuText()
+        {
+            return "Create a new project";
         }
     }
 
@@ -253,6 +280,89 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
 
     #region Transaction Menus and MenuItems
 
+    class CreateProjectNewbuild : MenuItem //displays all transactions in a project
+    {
+        private ProjectsManager _manager;
+
+        public CreateProjectNewbuild(ProjectsManager projectsManager)
+        {
+            _manager = projectsManager;
+        }
+
+        public override string MenuText()
+        {
+            return ("Create a Newbuild Project");
+        }
+
+        public override void Select()
+        {
+            bool NumInUse = false;
+            Console.WriteLine("Please enter new project Number");
+            int NewProjectNumber = Convert.ToInt16(Console.ReadLine());
+
+            foreach (Projects projects in _manager._projects)
+            {
+                if (projects.Project_ID == NewProjectNumber)
+                {
+                    NumInUse = true;
+                }
+            }
+            if (NumInUse == true)
+            {
+                Console.WriteLine(" this project number is currently in use, please use another");
+            }
+            else
+            {
+                Projects projects = new Projects(NewProjectNumber, true);
+                _manager.addProjects(projects);
+                Console.WriteLine("new project has been created");
+                Console.ReadLine();
+            }
+
+        }
+    }
+
+    class CreateProjectRenovation : MenuItem //displays all transactions in a project
+    {
+        private ProjectsManager _manager;
+
+        public CreateProjectRenovation(ProjectsManager projectsManager)
+        {
+            _manager = projectsManager;
+        }
+
+        public override string MenuText()
+        {
+            return ("Create a New Renovation Project");
+        }
+
+        public override void Select()
+        {
+            bool NumInUse = false;
+            Console.WriteLine("Please enter new project Number");
+            int NewProjectNumber = Convert.ToInt16(Console.ReadLine());
+
+            foreach (Projects projects in _manager._projects)
+            {
+                if (projects.Project_ID == NewProjectNumber)
+                {
+                    NumInUse = true;
+                }
+            }
+            if (NumInUse == true)
+            {
+                Console.WriteLine(" this project number is currently in use, please use another");
+            }
+            else
+            {
+                Projects projects = new Projects(NewProjectNumber, false);
+                _manager.addProjects(projects);
+                Console.WriteLine("new project has been created");
+                Console.ReadLine();
+            }
+
+        }
+    }
 
     class DisplayProjectTransactions : MenuItem //displays all transactions in a project
     {
