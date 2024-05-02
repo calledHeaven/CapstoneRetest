@@ -79,129 +79,129 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         {
             _menuItems.Clear();
 
-           
-
-            foreach (Projects p in _manager._projects)
-            {
-                switch (p)
-                {
-                    case Projects:
-                        _menuItems.Add(new ViewProjectTransactions(p));
-                        break;
-                }
-            }
-            _menuItems.Add(new ExitMenuItem(this));
-        }
-
-        public override string MenuText()
-        {
-            return "Display an existing project";
-        }
-    }
-
-    class AddNewProjectMenu : MenuItem //allows for file reading that will create new projects as needed
-    {
-        ProjectsManager _manager;
-
-        public AddNewProjectMenu(ProjectsManager manager)
-        {
-            _manager = manager;
-        }
-
-        public override void Select()
-        {
-            string FileName;
-            int FileType;
-            FileName = FileReader.GetFileName();
-
-            FileType = FileReader.Get_Input_Type(FileName);
-
-            switch (FileType)
-            {
-                case 1:
-                    FileReader.Read_Input_To_Transaction_Type1(_manager, FileName);
-                    break;
-
-                case 2:
-                    FileReader.Read_Input_To_Transaction_Type2(_manager, FileName);
-                    break;
-
-                case 3:
-                    Console.WriteLine("Error in File, Please check File Transcript and try again");
-                    break;
-
-
-            }
-
-        }
-
-        public override string MenuText()
-        {
-            return "Read Text File to generate a project";
-        }
-    }
-
-    class EditExistingProjectMenu : ConsoleMenu // allows for browsing of projects to check and edit transactions
-    {
-        private ProjectsManager _manager;
-
-        public EditExistingProjectMenu(ProjectsManager manager)
-        {
-            _manager = manager;
-        }
-
-        public override void CreateMenu()
-        {
-            _menuItems.Clear();
-            foreach (Projects project in _manager._projects)
-            {
-                switch (project)
-                {
-                    case Projects:
-                        _menuItems.Add(new EditExistingProjectMenuItem(project));
-                        break;
-                }
-            }
-            _menuItems.Add(new ExitMenuItem(this));
-
-        }
-
-        public override string MenuText()
-        {
-            return "Edit an existing project";
-        }
-    }
-
-    class EditExistingProjectMenuItem : MenuItem //allows for selection of projects to edit
-    {
-        private Projects Projects;
-
-        public EditExistingProjectMenuItem(Projects projects)
-        {
-            Projects = projects;
-        }
-
-        public override string MenuText()
-        {
-            return "add transaction to project " + Projects.Project_ID + " manualy";
-        }
-
-        public override void Select()
-        {
-            char Type;
-            float value;
             
-            Console.WriteLine("please enter transaction type:  \n enter in the format 'L' for land, 'P; for purchase, and so on");
-            Type = Convert.ToChar((Console.ReadLine().ToUpper()));
-            
-            /*
-            while (Type != 'L' || Type != 'R' || Type != 'P' || Type != 'S' )
-            {
-                Console.WriteLine("invalid input, please try again");
-                Console.WriteLine("please enter transaction type:  \n enter in the format 'L' for land, 'P; for purchase, and so on");
-                Type = Convert.ToChar((Console.ReadLine().ToUpper()));
-            }
-            */
+             foreach (Projects p in _manager._projects)
+             {
+                 switch (p)
+                 {
+                     case Projects:
+                         _menuItems.Add(new ViewProjectTransactions(p));
+                         break;
+                 }
+             }
+            _menuItems.Add(new TotalPortfolio(_manager));
+             _menuItems.Add(new ExitMenuItem(this));
+         }
+
+         public override string MenuText()
+         {
+             return "Display an existing Project";
+         }
+     }
+
+     class AddNewProjectMenu : MenuItem //allows for file reading that will create new projects as needed
+     {
+         ProjectsManager _manager;
+
+         public AddNewProjectMenu(ProjectsManager manager)
+         {
+             _manager = manager;
+         }
+
+         public override void Select()
+         {
+             string FileName;
+             int FileType;
+             FileName = FileReader.GetFileName();
+
+             FileType = FileReader.Get_Input_Type(FileName);
+
+             switch (FileType)
+             {
+                 case 1:
+                     FileReader.Read_Input_To_Transaction_Type1(_manager, FileName);
+                     break;
+
+                 case 2:
+                     FileReader.Read_Input_To_Transaction_Type2(_manager, FileName);
+                     break;
+
+                 case 3:
+                     Console.WriteLine("Error in File, Please check File Transcript and try again");
+                     break;
+
+
+             }
+
+         }
+
+         public override string MenuText()
+         {
+             return "Read Text File to generate a project";
+         }
+     }
+
+     class EditExistingProjectMenu : ConsoleMenu // allows for browsing of projects to check and edit transactions
+     {
+         private ProjectsManager _manager;
+
+         public EditExistingProjectMenu(ProjectsManager manager)
+         {
+             _manager = manager;
+         }
+
+         public override void CreateMenu()
+         {
+             _menuItems.Clear();
+             foreach (Projects project in _manager._projects)
+             {
+                 switch (project)
+                 {
+                     case Projects:
+                         _menuItems.Add(new EditExistingProjectMenuItem(project));
+                         break;
+                 }
+             }
+             _menuItems.Add(new ExitMenuItem(this));
+
+         }
+
+         public override string MenuText()
+         {
+             return "Edit an existing project";
+         }
+     }
+
+     class EditExistingProjectMenuItem : MenuItem //allows for selection of projects to edit
+     {
+         private Projects Projects;
+
+         public EditExistingProjectMenuItem(Projects projects)
+         {
+             Projects = projects;
+         }
+
+         public override string MenuText()
+         {
+             return "add transaction to project " + Projects.Project_ID + " manualy";
+         }
+
+         public override void Select()
+         {
+             char Type;
+             float value;
+
+             Console.WriteLine("please enter transaction type:  \n enter in the format 'L' for land, 'P; for purchase, and so on");
+             Type = Convert.ToChar((Console.ReadLine().ToUpper()));
+
+             /*
+             while (Type != 'L' || Type != 'R' || Type != 'P' || Type != 'S' )
+             {
+                 Console.WriteLine("invalid input, please try again");
+                 Console.WriteLine("please enter transaction type:  \n enter in the format 'L' for land, 'P; for purchase, and so on");
+                 Type = Convert.ToChar((Console.ReadLine().ToUpper()));
+             }
+             */
             Console.WriteLine("please enter transaction Value");
             value =  float.Parse(Console.ReadLine());
 
@@ -265,7 +265,7 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
 
         public override string MenuText()
         {
-            return "Remove existing shape menu";
+            return "Remove existing Project menu";
         }
 
         public override void Select()
@@ -279,6 +279,40 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
 
 
     #region Transaction Menus and MenuItems
+
+    class TotalPortfolio : MenuItem //displays all transactions in the portfolio
+    {
+        private ProjectsManager _manager;
+
+        public TotalPortfolio(ProjectsManager projectsManager)
+        {
+            _manager = projectsManager;
+        }
+
+        public override string MenuText()
+        {
+            return ("show total of portfolio");
+        }
+
+        public override void Select()
+        {
+            
+             double PortfolioProfit = 0;
+             double PortfolioRefund = 0;
+             double PortfolioSales = 0;
+             double PortfolioPurchases = 0;
+             foreach (Projects p in _manager._projects)
+             {
+                 PortfolioProfit += p.Get_Total_Profit();
+                 PortfolioRefund += p.VATRefund(PortfolioProfit);
+                 PortfolioSales += p.Get_Total_Sales();
+                 PortfolioPurchases += p.Get_Total_Purchases();
+             }
+            Console.WriteLine("total portfolio profit " + PortfolioProfit + "\ntotal Portfolio refund " + PortfolioRefund + "\ntotal Portfolio sales " + PortfolioSales + "\ntotal Portfolio Purchases " + PortfolioPurchases);
+            Console.ReadLine();
+            
+        }
+    }
 
     class CreateProjectNewbuild : MenuItem //displays all transactions in a project
     {
@@ -402,9 +436,6 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         {
             _menuItems.Clear();
             foreach (transactions t in Projects._transactions)
-            {
-                Console.WriteLine(Projects.Project_ID + "   " +  t.transaction.ToString());
-            }
             Projects.Get_Total_Profit();
             _menuItems.Add(new DisplayProjectTransactions(Projects));
             _menuItems.Add(new ViewProjectSales(Projects));

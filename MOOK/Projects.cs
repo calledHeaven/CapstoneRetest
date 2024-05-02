@@ -88,10 +88,11 @@ namespace MOOK // projects is a middle class in transactions, projects, buissnes
         {
             if (VAT_available == true) 
             {
-                double Total = (Math.Round(profits / ((100 + 20) / 100), 2));
+                double Total = (100 + 20) / 100;
+                Total = profits / Total;
                 if (Total >= 0) 
                 {
-                    return Total;
+                    return Math.Round(Total, 2);
                 }
                 else
                 {
