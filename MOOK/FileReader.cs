@@ -86,12 +86,14 @@ namespace MOOK
                         transactions transactions = new transactions(T_Type, T_Value);
                         Projects projects = new Projects(P_ID, true);
                         projectsManager.addProjects(projects);
+                        projects.addTransaction(transactions);
                     }
                     else
                     {
                         transactions transactions = new transactions(T_Type, T_Value);
                         Projects projects = new Projects(P_ID, false);
                         projectsManager.addProjects(projects);
+                        projects.addTransaction(transactions);
                     }
                 }
             }
@@ -117,6 +119,8 @@ namespace MOOK
 
                 if (Project_Exists == true)
                 {
+                   
+
                     transactions transactions = new transactions(T_Type, T_Value);
                     foreach (Projects p in projectsManager._projects)
                     {
@@ -135,12 +139,14 @@ namespace MOOK
                         transactions transactions = new transactions(T_Type, T_Value);
                         Projects projects = new Projects(P_ID, true);
                         projectsManager.addProjects(projects);
+                        projects.addTransaction(transactions);
                     }
                     else
                     {
                         transactions transactions = new transactions(T_Type, T_Value);
                         Projects projects = new Projects(P_ID, false);
                         projectsManager.addProjects(projects);
+                        projects.addTransaction(transactions);
                     }
                 }
             }

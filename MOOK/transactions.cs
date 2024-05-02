@@ -23,9 +23,11 @@ namespace MOOK
             }
             set
             {
+              
                 if (value != null && value != 'L' || value != 'S' || value != 'P' || value != 'R')
                 { _Transaction_Type = value; }
                 else { throw new Exception("Invalid Transaction type"); }
+                
             }
         }
 

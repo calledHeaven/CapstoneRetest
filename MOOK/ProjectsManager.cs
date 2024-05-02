@@ -296,7 +296,7 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
                 Console.WriteLine(Projects.Project_ID + "   " +  t.transaction.ToString());
             }
             Projects.Get_Total_Profit();
-
+            _menuItems.Add(new DisplayProjectTransactions(Projects));
             _menuItems.Add(new ViewProjectSales(Projects));
             _menuItems.Add(new ViewProjectPurchases(Projects));
             if (Projects.VAT_available == true) 
