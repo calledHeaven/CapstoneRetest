@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace MOOK // note: remember to add readlines to data viewing sections, so you actualy hav a chance to read the data
@@ -296,7 +297,6 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
             }
             Projects.Get_Total_Profit();
 
-            _menuItems.Add(new ViewProjectProfits(Projects));
             _menuItems.Add(new ViewProjectSales(Projects));
             _menuItems.Add(new ViewProjectPurchases(Projects));
             if (Projects.VAT_available == true) 
@@ -311,28 +311,6 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         }
     }
 
-    class ViewProjectProfits : MenuItem // allows for project profits viewing
-    {
-        private Projects Projects;
-
-        public ViewProjectProfits(Projects projects)
-        {
-            Projects = projects;
-        }
-        public override void Select()
-        {
-
-            Console.WriteLine("total profits for project " + Projects.Project_ID);
-            Console.WriteLine(Projects.Get_Total_Profit());
-            Console.WriteLine("Press enter to continue");
-            Console.ReadLine();
-            
-        }
-        public override string MenuText()
-        {
-            return " View Project Profits";
-        }
-    }
     class ViewProjectSales : MenuItem // alows for project sales viewing
     {
         private Projects Projects;
@@ -343,10 +321,18 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         }
         public override void Select()
         {
-            
+            Console.WriteLine(" ");
+            Console.WriteLine("Type  Value");
+            foreach (var transaction in Projects._transactions) 
+            {
+                if (transaction.Transaction_Type == 'S')
+                    Console.WriteLine("s    " + transaction.Transaction_Value);
+            }
+
+            Console.WriteLine(" ");
             Console.WriteLine("total sales for project " + Projects.Project_ID);
             Console.WriteLine( Projects.Get_Total_Sales() );
-            
+            Console.ReadLine();
         }
         public override string MenuText()
         {
@@ -364,8 +350,23 @@ namespace MOOK // note: remember to add readlines to data viewing sections, so y
         public override void Select()
         {
 
+            Console.WriteLine(" ");
+            Console.WriteLine("Type  Value");
+            foreach (var transaction in Projects._transactions)
+            {
+                if (transaction.Transaction_Type == 'P')
+                    Console.WriteLine("P    " + transaction.Transaction_Value);
+                else if (transaction.Transaction_Type == 'R')
+                    Console.WriteLine("R    " + transaction.Transaction_Value);
+                else if (transaction.Transaction_Type == 'L')
+                    Console.WriteLine("L    " + transaction.Transaction_Value);
+            }
+
+            Console.WriteLine(" ");
             Console.WriteLine("total Purchases for project " + Projects.Project_ID);
-            Console.WriteLine(  Projects.Get_Total_Purchases()  );
+            Console.WriteLine(Projects.Get_Total_Purchases());
+            Console.ReadLine();
+
 
         }
         public override string MenuText()
