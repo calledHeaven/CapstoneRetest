@@ -51,8 +51,8 @@ namespace MOOK // projects is a middle class in transactions, projects, buissnes
                     total += trans.Transaction_Value;
                 }
             }
-            Math.Round(total , 2);
-            return total;
+            
+            return Math.Round(total, 2);
         }
         public double Get_Total_Purchases()
         {
@@ -64,8 +64,8 @@ namespace MOOK // projects is a middle class in transactions, projects, buissnes
                     total += trans.Transaction_Value;
                 }
             }
-            Math.Round(total, 2);
-            return total;
+
+            return Math.Round(total, 2);
         }
         public double Get_Total_Profit()
         {
@@ -81,12 +81,20 @@ namespace MOOK // projects is a middle class in transactions, projects, buissnes
                     total -= trans.Transaction_Value;
                 }
             }
-            Math.Round(total, 2);
-            return total;
+
+            return Math.Round(total, 2);
         }
         public double VATRefund (double profits) 
         {
-            return (Math.Round(profits / ((100 + 20) / 100) , 2));
+            if (VAT_available == true) 
+            {
+                return (Math.Round(profits / ((100 + 20) / 100), 2));
+            }
+            else
+            {
+                return 0.00;
+            }
+            
         }
 
     }

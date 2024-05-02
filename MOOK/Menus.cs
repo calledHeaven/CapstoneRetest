@@ -19,6 +19,7 @@ namespace MOOK
 
             do
             {
+                Console.Clear();
                 Console.WriteLine(pMessage);
                 Console.WriteLine($"Please enter a number between {pMin} and {pMax} inclusive.");
 

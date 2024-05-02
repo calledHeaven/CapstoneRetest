@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MOOK
+namespace MOOK // note: remember to add readlines to data viewing sections, so you actualy hav a chance to read the data
 {
     // based on the OO Menu system provided by Hull University
     #region Project Manager Menus and MenuItems
@@ -33,7 +34,7 @@ namespace MOOK
 
         public override string MenuText()
         {
-            return "Shape Manager Menu";
+            return "Buisness Manager Menu";
         }
     }
 
@@ -49,6 +50,9 @@ namespace MOOK
         public override void CreateMenu()
         {
             _menuItems.Clear();
+
+           
+
             foreach (Projects p in _manager._projects)
             {
                 switch (p)
@@ -109,7 +113,7 @@ namespace MOOK
         }
     }
 
-    class EditExistingProjectMenu : ConsoleMenu // allows for browsing of projects to check and eddit transactions
+    class EditExistingProjectMenu : ConsoleMenu // allows for browsing of projects to check and edit transactions
     {
         private ProjectsManager _manager;
 
@@ -131,11 +135,12 @@ namespace MOOK
                 }
             }
             _menuItems.Add(new ExitMenuItem(this));
+
         }
 
         public override string MenuText()
         {
-            return "Edit an existing shape menu";
+            return "Edit an existing project";
         }
     }
 
@@ -268,6 +273,7 @@ namespace MOOK
             {
                 Console.WriteLine(t.transaction);
             }
+            Console.ReadLine();
 
 
         }
@@ -284,7 +290,6 @@ namespace MOOK
         public override void CreateMenu()
         {
             _menuItems.Clear();
-            Console.WriteLine("ID  Type  Value");
             foreach (transactions t in Projects._transactions)
             {
                 Console.WriteLine(Projects.Project_ID + "   " +  t.transaction.ToString());
@@ -302,7 +307,7 @@ namespace MOOK
         }
         public override string MenuText()
         {
-            return " View Project " + Projects.Project_ID + " Transactions";
+            return Projects.Project_ID + " Sales (" + Projects.Get_Total_Sales() + ")  Purchases ("  + Projects.Get_Total_Purchases() + ")  Refund (" + Projects.VATRefund(Projects.Get_Total_Profit()) + ")  Profit (" + Projects.Get_Total_Profit() + ")" ; 
         }
     }
 
@@ -317,9 +322,11 @@ namespace MOOK
         public override void Select()
         {
 
-            Console.WriteLine("total sales for project " + Projects.Project_ID);
+            Console.WriteLine("total profits for project " + Projects.Project_ID);
             Console.WriteLine(Projects.Get_Total_Profit());
-
+            Console.WriteLine("Press enter to continue");
+            Console.ReadLine();
+            
         }
         public override string MenuText()
         {
@@ -387,6 +394,7 @@ namespace MOOK
         }
     }
         #endregion
+
 }
 
 

@@ -17,8 +17,8 @@ namespace MOOK
             try
             {
                 
-                Console.WriteLine("Please enter the file directory of the file, e.g C:\\Users\\HomeUser\\Documents\\Visual Studio 2022\\coursework");
-                Console.WriteLine("if this is a struggle, locate the files in the file explorer, right click and seslect 'Copy as text'");
+                Console.WriteLine( "\nPlease enter the file directory of the file, e.g C:\\Users\\HomeUser\\Documents\\Visual Studio 2022\\coursework");
+                Console.WriteLine("if this is a struggle, locate the files in the file explorer, right click and seslect 'Copy as text', and dont forget to remove the quotation marks around the file");
                 Filename = Console.ReadLine();
 
                 while (Filename == null)
